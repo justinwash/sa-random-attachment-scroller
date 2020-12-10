@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <script language="JavaScript">
+      var wrapper, content, test;
+      var more = "";
+      var imgIndex = 0;
+
+      function getRandomAttachment() {
+        min = Math.ceil(999999);
+        max = Math.floor(100000);
+        res = Math.floor(Math.random() * (max - min) + min);
+        return `<img src="https://forums.somethingawful.com/attachment.php?attachmentid=${res}"></img>`;
+      }
+
+      function scroller() {
+        if (
+          window.innerHeight + window.scrollY >=
+          document.body.children[0].children[imgIndex].y - 2
+        ) {
+          content.innerHTML += getRandomAttachment();
+          imgIndex += 1;
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="content" style="height: 100vh; margin: 12px"></div>
+
+    <script language="JavaScript">
+      content = document.getElementById("content");
+      content.innerHTML = getRandomAttachment();
+
+      if (window.addEventListener)
+        window.addEventListener("scroll", scroller, false);
+    </script>
+  </body>
+</html>
